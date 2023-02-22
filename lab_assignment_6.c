@@ -1,8 +1,18 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int search(int numbers[], int low, int high, int value) 
 {
-	return -1;
+	if(value > numbers[high] || value < numbers[low])
+		return -1;
+	int middle = (low+high)/2;
+	if(numbers[middle] == value)
+		return middle;
+	else if(numbers[middle] > value)
+		high = middle-1;
+	else
+		low = middle+1;
+	return search(numbers, low, high, value);
 }
 
 void printArray(int numbers[], int sz)
